@@ -32,7 +32,7 @@
     </style>
   </head>
   <body>
-    <div id="floating-panel">
+    <!-- <div id="floating-panel">
     <b>Start: </b>
     <select id="start">
       <option value="chicago, il">Chicago</option>
@@ -63,7 +63,7 @@
       <option value="san bernardino, ca">San Bernardino</option>
       <option value="los angeles, ca">Los Angeles</option>
     </select>
-    </div>
+    </div> -->
     <div id="map"></div>
     <script>
       function initMap() {
@@ -78,14 +78,15 @@
         var onChangeHandler = function() {
           calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
-        document.getElementById('end').addEventListener('change', onChangeHandler);
-      }
+        // document.getElementById('start').addEventListener('change', onChangeHandler);
+        // document.getElementById('end').addEventListener('change', onChangeHandler);
+        onChangeHandler(); 
+    }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         directionsService.route({
-          origin: document.getElementById('start').value,
-          destination: document.getElementById('end').value,
+          origin: "{{ origin }}", // document.getElementById('start').value,
+          destination: "{{ destination }}", // document.getElementById('end').value,
           travelMode: 'DRIVING'
         }, function(response, status) {
           if (status === 'OK') {
